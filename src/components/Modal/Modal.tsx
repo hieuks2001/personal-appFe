@@ -15,11 +15,14 @@ function ModalEdit(props: any) {
                 // wrapperCol={{ span: 8 }}
                 onFinish={modalOk}
                 initialValues={{
+                    _id : data._id,
                     action: data.action,
                     type: data.type,
                     money: data.money,           
                 }}
             >
+                 <FormItem name="_id" hidden>
+                </FormItem>
                 <FormItem label='Công việc' name="action" >
                     <Input />
                 </FormItem>

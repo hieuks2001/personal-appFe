@@ -1,30 +1,18 @@
-import Layout from './components/Layout/index'
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
-import Home from './features/Home';
-import SpendingManagement from './features/SpendingManagement';
-
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/nhap-chi-tieu",
-        element: <SpendingManagement />,
-      },
-    ],
-  },
-]);
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./modules/Home";
+import SpendingManagement from "./modules/SpendingManagement";
+import Login from "./modules/Auth/pages/login/index";
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="nhap-chi-tieu" element={<SpendingManagement />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 
