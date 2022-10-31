@@ -3,7 +3,7 @@ import { Card, Divider, List, Space, Typography } from "antd";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import ModalEdit from "../../../../components/Modal/Modal";
+import ModalEdit from "../ModalEdit/Modal";
 import { deleteSpending } from "../../services/routes";
 
 function History(props: any) {
