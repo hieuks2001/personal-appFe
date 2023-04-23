@@ -1,6 +1,9 @@
 import axios from "axios"
 
-let BASE_URL = "http://localhost:3000/"
+// const port = 7116;
+const port = JSON.parse(localStorage.getItem("port"));
+
+let BASE_URL = "https://localhost:"+port+"/api"
 
 axios.defaults.baseURL = `${BASE_URL}`
 

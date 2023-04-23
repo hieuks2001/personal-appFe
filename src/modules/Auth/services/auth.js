@@ -1,6 +1,10 @@
 import axios from "axios";
 
 export const login = (requestData) => {
-  return axios.post("/auth", requestData);
-};
+  localStorage.setItem("port", JSON.stringify(requestData.port));
 
+  return axios.post(
+    `https://localhost:${requestData.port}/api/TblUsers/Login`,
+    requestData
+  );
+};

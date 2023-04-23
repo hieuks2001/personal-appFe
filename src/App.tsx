@@ -1,17 +1,24 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./modules/Home";
-import SpendingManagement from "./modules/SpendingManagement";
+import AddBorrower from "./modules/BorrowBooks/pages/AddNewItems";
+import AddItems from "./modules/AddItems";
 import Login from "./modules/Auth/pages/login/index";
-
+import Register from "./modules/Auth/pages/register/index";
+import BorrowBooks from "./modules/BorrowBooks";
+import AddNewItems from "./modules/AddItems/pages/AddNewItems";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="nhap-chi-tieu" element={<SpendingManagement />} />
+        <Route index element={<BorrowBooks />} />
+
+        <Route path="nhap-hang" element={<AddItems />} />
+        <Route path="them-hang" element={<AddNewItems />} />
+
+        <Route path="add" element={<AddBorrower />} />
       </Route>
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }

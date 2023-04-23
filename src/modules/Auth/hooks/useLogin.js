@@ -9,6 +9,7 @@ const useLogin = () => {
   const navigate = useNavigate();
   return useMutation(
     async (resData) => {
+      // console.log(resData);
       return await login(resData)
     },
     {

@@ -6,9 +6,11 @@ import useCreateSpend from "./hooks/useCreateSpend";
 import useGetSpend from "./hooks/useGetSpend";
 import useDeleteSpend from "./hooks/useDeleteSpend";
 import useUpdateSpend from "./hooks/useUpdateSpend";
+import { useState } from "react";
 
 function SpendingManagement() {
-  const { data: spendList } = useGetSpend();
+  // const { data: spendList } = useGetSpend();
+  const spendList = useState([]);
   const { mutate: postSpend } = useCreateSpend();
   const { mutate: deleteSpending } = useDeleteSpend();
   const { mutate: updateSpend } = useUpdateSpend();
@@ -26,19 +28,23 @@ function SpendingManagement() {
 
   const date = moment(new Date()).format("DD/MM/YYYY");
   return (
-    <>
+    <div
+      className="site-layout-background"
+      style={{ padding: 24, minHeight: 380 }}
+    >
       <br />
+
       <Row gutter={24}>
-        <Col span={8}>
+        <Col span={12}>
           <FormSpending onSubmitForm={onSubmitForm} />
         </Col>
 
-        <Col span={14}>
+        <Col span={12}>
           <Typography.Title level={2} type="warning">
             {date}
           </Typography.Title>
           <Typography.Title level={3} type="danger">
-            Chi tiêu hôm nay
+            Sách đã nhập hôm nay
           </Typography.Title>
           <HistoryList
             historyList={spendList}
@@ -46,29 +52,11 @@ function SpendingManagement() {
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />
-          <Typography.Title level={4} style={{ color: "000" }}>
-            Tổng chi tiêu:
-            <sub>đ</sub>
-          </Typography.Title>
 
           <hr />
-          <Typography.Title level={3} type="danger">
-            Thu nhập hôm nay
-          </Typography.Title>
-          <HistoryList
-            historyList={spendList}
-            typeSpend="receipts"
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-          />
-          <Typography.Title level={4} style={{ color: "#000" }}>
-            Tổng thu nhập:
-            {/* {Object.values(spendList).reduce((r, { money }) => r + money, 0).toLocaleString()} */}
-            <sub>đ</sub>
-          </Typography.Title>
         </Col>
       </Row>
-    </>
+    </div>
   );
 }
 

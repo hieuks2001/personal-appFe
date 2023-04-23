@@ -8,10 +8,10 @@ import useUpdateTodo from "./hooks/useUpdateTodo";
 
 function Home() {
   const { data: todoList } = useGetTodo();
-  
-  const { mutate: postTodo} = useCreateTodo();
-  const { mutate: deleteTodo} = useDeleteTodo();
-  const { mutate: updateTodo} = useUpdateTodo();
+
+  const { mutate: postTodo } = useCreateTodo();
+  const { mutate: deleteTodo } = useDeleteTodo();
+  const { mutate: updateTodo } = useUpdateTodo();
 
   const handleSubmitTodo = (values: any) => {
     postTodo(values);
@@ -25,39 +25,12 @@ function Home() {
   };
   return (
     <>
-      <Breadcrumb style={{ margin: "16px 0" }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>Todo</Breadcrumb.Item>
-      </Breadcrumb>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 380 }}
       >
         {/* Content */}
-
         <AddTodo handleSubmit={handleSubmitTodo} />
-
-        <br />
-        <div style={{ textAlign: "center" }}>
-          <Space split={<Divider type="vertical" />}>
-            <TodoList
-              todoList={todoList}
-              header="Todo"
-              type="danger"
-              todoStatus="new"
-              handleCheck={handleCheck}
-              handleDelete={handleDelete}
-            />
-            <TodoList
-              todoList={todoList}
-              header="Done"
-              type="success"
-              todoStatus="completed"
-              handleCheck={handleCheck}
-              handleDelete={handleDelete}
-            />
-          </Space>
-        </div>
       </div>
     </>
   );
