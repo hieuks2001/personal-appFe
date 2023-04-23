@@ -9,13 +9,14 @@ import useGetItem from "./hooks/useGetItem";
 import useGetPublisher from "./hooks/useGetPublisher";
 import useUpdateItem from "./hooks/useUpdateItem";
 import { useAppSelector } from "../../hooks/reduxHook";
+import useGetLibr from "./../BorrowBooks/hooks/book/useGetLibr";
 
 const App = () => {
   const { mutate: deleteItem } = useDeleteItem();
   const { mutate: updateItem } = useUpdateItem();
   const { data: bookList } = useGetItem();
   const { data: publisherList } = useGetPublisher();
-
+  const { data: lib } = useGetLibr();
   const handleDelete = (id) => {
     deleteItem(id);
   };
@@ -33,7 +34,7 @@ const App = () => {
       bookBookId: values?.bookBookId,
       bookTitle: values?.bookTitle,
       bookPublisherName: values?.bookPublisherName,
-      tblBookCopies:[amountBookVku,amountBookUFL]
+      tblBookCopies: [amountBookVku, amountBookUFL],
     };
     console.log(infoBook);
 
@@ -71,13 +72,25 @@ const App = () => {
           title: "VKU",
           dataIndex: "tblBookCopies",
           key: "tblBookCopies",
-          render: (text) => <span>{text[0]?.bookCopiesNoOfCopies}</span>,
+          render: (text) => {
+            if (text[0]?.bookCopiesBranchId === 1) {
+              return <span>{text[0]?.bookCopiesNoOfCopies}</span>;
+            } else if (text[1]?.bookCopiesBranchId === 1) {
+              return <span>{text[1]?.bookCopiesNoOfCopies}</span>;
+            }
+          },
         },
         {
           title: "Ngoại ngữ",
           dataIndex: "tblBookCopies",
           key: "tblBookCopies",
-          render: (text) => <span>{text[1]?.bookCopiesNoOfCopies}</span>,
+          render: (text) => {
+            if (text[1]?.bookCopiesBranchId === 2) {
+              return <span>{text[1]?.bookCopiesNoOfCopies}</span>;
+            } else if (text[0]?.bookCopiesBranchId === 2) {
+              return <span>{text[0]?.bookCopiesNoOfCopies}</span>;
+            }
+          },
         },
       ],
     },
@@ -148,7 +161,7 @@ const App = () => {
         <Button type="primary">Search</Button>
       </Form> */}
       <br />
-      <Button style={{ backgroundColor: "green",color:"#fff" }}>
+      <Button style={{ backgroundColor: "green", color: "#fff" }}>
         <Link to="/them-hang">Add new</Link>
       </Button>
 
