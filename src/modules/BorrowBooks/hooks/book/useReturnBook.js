@@ -13,7 +13,7 @@ const useReturnBook = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("userBorrow");
+        queryClient.invalidateQueries("userBorrowBooks");
         alert("Cập nhật thành công!");
         window.location.reload();
       },
