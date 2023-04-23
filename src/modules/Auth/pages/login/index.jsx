@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Login = () => {
   const { mutate: login } = useLogin();
+  // const [value, setValue] = useState();
   const onFinish = (values) => {
     // console.log(values);
     login(values);
@@ -19,10 +20,17 @@ const Login = () => {
   // const instance = axios.create({
   //   baseURL: "https://api.example.com",
   // });
-  // const handleSelectServer = (e) => {
-  //   // console.log(e);
-  //   setValue(e);
-  // };
+  // useEffect(() => {
+  //   console.log(value);
+  //   localStorage.setItem("port", JSON.stringify(value));
+  // }, [value]);
+  const handleSelectServer = (e) => {
+    localStorage.setItem("port", JSON.stringify(e));
+    let BASE_URL = "https://localhost:" + e + "/api";
+
+    axios.defaults.baseURL = `${BASE_URL}`;
+  };
+
   // axios.defaults.baseURL = "https://localhost:" + value + "/api";
 
   return (
@@ -36,8 +44,8 @@ const Login = () => {
               // src=""
               alt="Your logo"
             /> */}
-            <p style={{ fontSize: "30px", fontWeight: 700 }}>Your Logo Here</p>
-            <p style={{ fontSize: "20px" }}>Your slogan Here</p>
+            <p style={{ fontSize: "30px", fontWeight: 700 }}>Library UDN </p>
+            <p style={{ fontSize: "20px" }}></p>
           </div>
         </Col>
         <Col span={6} pull={6}>
@@ -74,12 +82,11 @@ const Login = () => {
               >
                 <Input.Password placeholder="Password" />
               </Form.Item>
-
               <Form.Item name={"port"}>
                 <Select
                   placeholder="Chọn server"
                   style={{ width: 150 }}
-                  // onChange={handleSelectServer}
+                  onChange={handleSelectServer}
                   // value={value}
                   key={"serrver"}
                 >
@@ -93,7 +100,6 @@ const Login = () => {
                     Ngoại ngữ
                   </Select.Option>
                 </Select>
-                
               </Form.Item>
               <Form.Item className="px-4">
                 <Button type="primary" htmlType="submit">

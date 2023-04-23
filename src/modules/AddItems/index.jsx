@@ -148,7 +148,7 @@ const App = () => {
         <Button type="primary">Search</Button>
       </Form> */}
       <br />
-      <Button style={{ backgroundColor: "green" }}>
+      <Button style={{ backgroundColor: "green",color:"#fff" }}>
         <Link to="/them-hang">Add new</Link>
       </Button>
 

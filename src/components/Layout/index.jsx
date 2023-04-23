@@ -25,8 +25,8 @@ function MainLayout() {
 
 
   const items = [
-    getItem(<Link to="/nhap-hang">Quản lý sách</Link>, "2"),
-    getItem(<Link to="/">Quản lý người mượn</Link>, "1"),
+    getItem(<Link to="/">Quản lý sách</Link>, "1"),
+    getItem(<Link to="/user">Quản lý người mượn</Link>, "2"),
     getItem(
       <Link
         onClick={() => {

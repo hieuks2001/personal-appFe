@@ -10,9 +10,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<BorrowBooks />} />
+        <Route path="/user" element={<BorrowBooks />} />
 
-        <Route path="nhap-hang" element={<AddItems />} />
+        <Route index path="" element={<AddItems />} />
         <Route path="them-hang" element={<AddNewItems />} />
 
         <Route path="add" element={<AddBorrower />} />
